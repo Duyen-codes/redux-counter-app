@@ -9,8 +9,39 @@ export const counterSlice = createSlice({
     increment: (state) => {
       state.value += 1;
     },
+    incrementByAmount: (state, action) => {
+      state.value += action.payload;
+    },
+    decrement: (state) => {
+      state.value -= 1;
+    },
+
+    decrementByAmount: (state, action) => {
+      state.value -= action.payload;
+    },
   },
 });
 
-export const { increment } = counterSlice.actions;
+// createSlice returns an object that looks likes:
+// {
+//     name : string,
+//     reducer : ReducerFunction,
+//     actions : Record<string, ActionCreator>,
+//     caseReducers: Record<string, CaseReducer>.
+//     getInitialState: () => State
+// }
+
+// actions
+export const {
+  increment,
+  incrementByAmount,
+  decrement,
+  decrementByAmount,
+  reset,
+} = counterSlice.actions;
+
+// state
+export const selectCount = (state) => state.counter.value;
+
+// store
 export default counterSlice.reducer;
